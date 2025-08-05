@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const controller = require('../controllers/projectController.js');
 
-router.get('/list', controller); 
-router.post('/add', controller);
-router.get('/details/:id', controller);
+router.get('/list', controller.listProjects); 
+// router.post('/add', controller);
+// router.get('/details/:id', controller);
 
 
