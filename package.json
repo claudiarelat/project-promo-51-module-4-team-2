@@ -1,0 +1,34 @@
+{
+  "name": "project-promo-51-module-4-team-2",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "api",
+    "server",
+    "backend"
+  ],
+  "homepage": "https://github.com/claudiarelat/project-promo-51-module-4-team-2#readme",
+  "bugs": {
+    "url": "https://github.com/claudiarelat/project-promo-51-module-4-team-2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claudiarelat/project-promo-51-module-4-team-2.git"
+  },
+  "license": "ISC",
+  "author": "Push Sisters",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.3"
+  },
+  "devDependencies": {}
+}
