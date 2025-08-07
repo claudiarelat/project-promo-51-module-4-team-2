@@ -1,4 +1,4 @@
-const connection = require("./db/connection.js");
+const connection = require("../db/connection");
 
 async function getAll() {
 const conn = await connection.getConnection();
