@@ -7,3 +7,4 @@ router.get('/list', controller.listProjects);
 // router.get('/details/:id', controller);
 
 
+module.exports = router;
