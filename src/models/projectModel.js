@@ -12,9 +12,9 @@ async function addMovie(projectData) {
     const { titulo_obra, link_reseñas, link_plataforma, genero, sinopsis, imagen_obra } = projectData;
    
     const sql = 'INSERT INTO OBRAS (titulo_obra, link_reseñas, link_plataforma, genero, sinopsis, imagen_obra) VALUES (?, ?, ?, ?, ?, ?)';
-  
+    const conn = await connection.getConnection();
     try {
-      const [result] = await db.execute(sql, [titulo_obra, link_reseñas, link_plataforma, genero, sinopsis, imagen_obra]);
+      const [result] = await conn.execute(sql, [titulo_obra, link_reseñas, link_plataforma, genero, sinopsis, imagen_obra]);
       return result.insertId; // or return result if you want more info
     } catch (error) {
         console.error('Error al crear la peli:', error);
