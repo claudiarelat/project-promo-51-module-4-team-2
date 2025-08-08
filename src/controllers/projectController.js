@@ -28,5 +28,23 @@ async function createMovie(req, res) {
   }
 }
 
-
-module.exports = { listProjects, createMovie };
+async function getMovieById(req, res) {
+	const id = parseInt(req.params.id, 10); // validación simple
+  
+	if (Number.isNaN(id)) {
+	  return res.status(400).json({ success: false, message: "El id debe ser un número" });
+	}
+  
+	try {
+	  const movie = await project.getById(id);
+	  if (!movie) {
+		return res.status(404).json({ success: false, message: "Película no encontrada" });
+	  }
+	  res.json({ success: true, result: movie });
+	} catch (error) {
+	  console.error(error);
+	  res.status(500).json({ success: false, message: "Error al buscar la película" });
+	}
+  }
+  
+  module.exports = { listProjects, createMovie, getMovieById };

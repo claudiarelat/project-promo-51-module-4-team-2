@@ -24,6 +24,13 @@ async function addMovie(projectData) {
         });
       }
   }
-  
 
-module.exports = { getAll, addMovie};
+  async function getById(id) {
+    const conn = await connection.getConnection();
+    const sql = "SELECT * FROM OBRAS WHERE id = ?";
+    const [rows] = await conn.query(sql, [id]);
+    return rows[0]; // una única obra (o undefined si no existe)
+  }
+  
+  module.exports = { getAll, addMovie, getById };
+  
