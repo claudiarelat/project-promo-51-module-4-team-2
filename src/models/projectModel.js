@@ -42,4 +42,21 @@ async function addMovie(projectData) {
       }
 }
 
-module.exports = { getAll, addMovie };
+
+async function getById(id) {
+  const conn = await connection.getConnection();
+  const sql = `
+    SELECT OBRAS.*, 
+           nombre_personaje, rol_personaje, frase_estrella, imagen_personaje 
+    FROM OBRAS 
+    LEFT JOIN PERSONAJES ON OBRAS.id = PERSONAJES.obra_id
+    WHERE OBRAS.id = ?
+  `;
+  const [rows] = await conn.execute(sql, [id]);
+  if (rows.length === 0) {
+    return null; // no s'ha trobat cap obra amb aquest id
+  }
+  return rows[0]; // retorna l'únic resultat
+}
+
+module.exports = { getAll, addMovie, getById };

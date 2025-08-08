@@ -35,5 +35,27 @@ async function createMovie(req, res) {
   }
 }
 
-module.exports = { listProjects, createMovie };
+async function getProjectById(req, res) {
+  try {
+    const { id } = req.params;
+    const baseUrl = process.env.BASE_URL || `http://localhost:${process.env.PORT || 4000}`;
+
+    const projectData = await project.getById(id);
+
+    if (!projectData) {
+      return res.status(404).json({ success: false, message: "Obra no encontrada" });
+    }
+
+    // Afegir URL completa a les imatges
+    projectData.imagen_obra = `${baseUrl}/${projectData.imagen_obra}`;
+    projectData.imagen_personaje = `${baseUrl}/${projectData.imagen_personaje}`;
+
+    res.json({ success: true, results: projectData });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Error al obtener la obra" });
+  }
+}
+
+module.exports = { listProjects, createMovie, getProjectById };
 
