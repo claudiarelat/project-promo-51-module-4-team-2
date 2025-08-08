@@ -12,6 +12,9 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
+// Aquí sirves los archivos estáticos globalmente
+server.use(express.static('public'));
+
 server.use('/project', projectRoutes); //girlflix instead of project
 
 server.listen(PORT, () => {

@@ -2,35 +2,61 @@ const connection = require("../db/connection");
 
 async function getAll() {
 const conn = await connection.getConnection();
-const [rows] = await conn.query('SELECT * from OBRAS');
+const [rows] = await conn.query('SELECT OBRAS.*, nombre_personaje, rol_personaje, frase_estrella, imagen_personaje from OBRAS LEFT JOIN PERSONAJES ON OBRAS.id = PERSONAJES.obra_id');
 return rows;
 };
 
 
-// Add a new project to the database
+// Añadir una obra y su único personaje
 async function addMovie(projectData) {
-    const { titulo_obra, link_reseñas, link_plataforma, genero, sinopsis, imagen_obra } = projectData;
-   
-    const sql = 'INSERT INTO OBRAS (titulo_obra, link_reseñas, link_plataforma, genero, sinopsis, imagen_obra) VALUES (?, ?, ?, ?, ?, ?)';
-    const conn = await connection.getConnection();
-    try {
-      const [result] = await conn.execute(sql, [titulo_obra, link_reseñas, link_plataforma, genero, sinopsis, imagen_obra]);
-      return result.insertId; // or return result if you want more info
-    } catch (error) {
-        console.error('Error al crear la peli:', error);
-        res.status(500).json({
-          success: false,
-          message: 'Error al crear la peli'
-        });
-      }
-  }
+  const {
+    titulo_obra,
+    link_reseñas,
+    link_plataforma,
+    genero,
+    sinopsis,
+    imagen_obra,
+    nombre_personaje,
+    rol_personaje,
+    frase_estrella,
+    imagen_personaje
+  } = projectData;
 
-  async function getById(id) {
-    const conn = await connection.getConnection();
-    const sql = "SELECT * FROM OBRAS WHERE id = ?";
-    const [rows] = await conn.query(sql, [id]); //rows array con todas las filas encontradas
-    return rows[0]; // una única obra (o undefined si no existe) 0 par aque devuelva la primera fila que encuentres
+  const sqlObra = 'INSERT INTO OBRAS (titulo_obra, link_reseñas, link_plataforma, genero, sinopsis, imagen_obra) VALUES (?, ?, ?, ?, ?, ?)';
+  const sqlPersonaje = 'INSERT INTO PERSONAJES (nombre_personaje, rol_personaje, frase_estrella, imagen_personaje, obra_id) VALUES (?, ?, ?, ?, ?)';
+
+  const conn = await connection.getConnection();
+
+  try {
+    // Insertar obra y obtener id
+    const [result] = await conn.execute(sqlObra, [titulo_obra, link_reseñas, link_plataforma, genero, sinopsis, imagen_obra]);
+    const obraId = result.insertId;
+
+    // Insertar personaje con obraId
+    await conn.execute(sqlPersonaje, [nombre_personaje, rol_personaje, frase_estrella, imagen_personaje, obraId]);
+
+    return obraId;
+  } catch (error) {
+        console.error('Error al crear la peli:', error);
+        throw error;
+      }
+}
+
+
+async function getById(id) {
+  const conn = await connection.getConnection();
+  const sql = `
+    SELECT OBRAS.*, 
+           nombre_personaje, rol_personaje, frase_estrella, imagen_personaje 
+    FROM OBRAS 
+    LEFT JOIN PERSONAJES ON OBRAS.id = PERSONAJES.obra_id
+    WHERE OBRAS.id = ?
+  `;
+  const [rows] = await conn.execute(sql, [id]);
+  if (rows.length === 0) {
+    return null; // no s'ha trobat cap obra amb aquest id
   }
-  
-  module.exports = { getAll, addMovie, getById };
-  
+  return rows[0]; // retorna l'únic resultat
+}
+
+module.exports = { getAll, addMovie, getById };

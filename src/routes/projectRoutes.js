@@ -4,7 +4,8 @@ const controller = require('../controllers/projectController');
 
 router.get('/list', controller.listProjects); 
 router.post('/add', controller.createMovie);
-router.get('/details/:id', controller.getMovieById);
+router.get('/:id', controller.getProjectById);
+
 
 
 module.exports = router;
