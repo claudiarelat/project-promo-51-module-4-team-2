@@ -28,8 +28,8 @@ async function addMovie(projectData) {
   async function getById(id) {
     const conn = await connection.getConnection();
     const sql = "SELECT * FROM OBRAS WHERE id = ?";
-    const [rows] = await conn.query(sql, [id]);
-    return rows[0]; // una única obra (o undefined si no existe)
+    const [rows] = await conn.query(sql, [id]); //rows array con todas las filas encontradas
+    return rows[0]; // una única obra (o undefined si no existe) 0 par aque devuelva la primera fila que encuentres
   }
   
   module.exports = { getAll, addMovie, getById };

@@ -12,3 +12,4 @@ const getConnection = async () => {
 }
 
 module.exports = { getConnection };
+

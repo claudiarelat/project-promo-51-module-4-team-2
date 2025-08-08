@@ -47,4 +47,4 @@ async function getMovieById(req, res) {
 	}
   }
   
-  module.exports = { listProjects, createMovie, getMovieById };
+  module.exports = { listProjects, createMovie, getMovieById }; 
