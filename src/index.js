@@ -22,8 +22,9 @@ server.set('views', path.join(__dirname, 'views'));
 // Servir carpeta styles (CSS) como estática
 server.use(express.static(path.join(__dirname, 'styles')));
 
-// También sirves la carpeta public (ya la tenías)
+// Servir carpeta public como estática
 server.use(express.static('public'));
+server.use(express.static(path.join(__dirname, 'public')));
 
 // Rutas API
 server.use('/project', projectRoutes); // girlflix instead of project
