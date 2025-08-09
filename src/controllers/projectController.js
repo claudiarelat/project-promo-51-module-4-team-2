@@ -48,8 +48,10 @@ async function getProjectById(req, res) {
     // Afegir URL completa a les imatges
     projectData.imagen_obra = `${baseUrl}/${projectData.imagen_obra}`;
     projectData.imagen_personaje = `${baseUrl}/${projectData.imagen_personaje}`;
+    //res.json({ success: true, results: projectData });
 
-    res.json({ success: true, results: projectData });
+    // Renderiza la vista show.ejs y le pasa los datos
+    res.render("show", { proyecto: projectData });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Error al obtener la obra" });

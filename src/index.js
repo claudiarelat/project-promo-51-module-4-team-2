@@ -1,27 +1,38 @@
-//importaciones
+// importaciones
 const express = require('express'); 
 const cors = require('cors');
+const path = require('path');
 
 const projectRoutes = require('./routes/projectRoutes'); 
 
 require('dotenv').config();
 
-//creación del servidor 
+// creación del servidor 
 const PORT = process.env.PORT || 4000;
 const server = express();
+
+// Middlewares
 server.use(cors());
-server.use(express.json());
-
-// Aquí sirves los archivos estáticos globalmente
-server.use(express.static('public'));
-
 server.use(express.json({ limit: '10mb' }));
 
-server.use('/project', projectRoutes); //girlflix instead of project
+// Configuración de EJS como motor de plantillas
+server.set('view engine', 'ejs');
+server.set('views', path.join(__dirname, 'views'));
 
+// Servir carpeta styles (CSS) como estática
+server.use(express.static(path.join(__dirname, 'styles')));
+
+// También sirves la carpeta public (ya la tenías)
+server.use(express.static('public'));
+
+// Rutas API
+server.use('/project', projectRoutes); // girlflix instead of project
+
+// Inicio del servidor
 server.listen(PORT, () => {
     console.log(`Servidor iniciado en el puerto ${PORT}`);
-})
+});
+
 
 
 
