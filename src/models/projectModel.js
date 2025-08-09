@@ -32,8 +32,8 @@ async function addMovie(projectData) {
     const [result] = await conn.execute(sqlObra, [titulo_obra, link_resenas, link_plataforma, genero, sinopsis, imagen_obra]);
     const obraId = result.insertId;
 
-/*     // Insertar personaje con obraId
-    await conn.execute(sqlPersonaje, [nombre_personaje, rol_personaje, frase_estrella, imagen_personaje, obraId]); */
+    // Insertar personaje con obraId
+    await conn.execute(sqlPersonaje, [nombre_personaje, rol_personaje, frase_estrella, imagen_personaje, obraId]);
 
     return obraId;
   } catch (error) {
