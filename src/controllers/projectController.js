@@ -39,7 +39,8 @@ function saveBase64Image(base64String, folder = 'uploads') {
 
     // Crear nombre único
     const fileName = `${Date.now()}-${Math.round(Math.random() * 1e9)}.${ext}`;
-    const dirPath = path.join(__dirname, '..', 'public', folder);
+    //const dirPath = path.join(__dirname, '..', 'public', folder);
+    const dirPath = path.join(process.cwd(), 'public', folder);
 
     // Crear carpeta si no existe
     if (!fs.existsSync(dirPath)) {

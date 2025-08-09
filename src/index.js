@@ -1,4 +1,4 @@
-// importaciones
+// Importaciones
 const express = require('express'); 
 const cors = require('cors');
 const path = require('path');
@@ -7,7 +7,7 @@ const projectRoutes = require('./routes/projectRoutes');
 
 require('dotenv').config();
 
-// creación del servidor 
+// Creación del servidor 
 const PORT = process.env.PORT || 4000;
 const server = express();
 
@@ -22,17 +22,20 @@ server.set('views', path.join(__dirname, 'views'));
 // Servir carpeta styles (CSS) como estática
 server.use(express.static(path.join(__dirname, 'styles')));
 
-// Servir carpeta public como estática
-server.use(express.static('public'));
-server.use(express.static(path.join(__dirname, 'public')));
+// Servir carpeta public como estática (ruta absoluta)
+
+server.use(express.static(path.join(process.cwd(), 'public')));
+// Servir carpeta uploads como estática (ruta absoluta)
+server.use('/uploads', express.static(path.join(process.cwd(), 'public', 'uploads')));
 
 // Rutas API
-server.use('/project', projectRoutes); // girlflix instead of project
+server.use('/project', projectRoutes);
 
 // Inicio del servidor
 server.listen(PORT, () => {
     console.log(`Servidor iniciado en el puerto ${PORT}`);
 });
+
 
 
 
