@@ -7,10 +7,48 @@
 </head>
 <body>
   <h1>Datos del proyecto</h1>
+  <section>
+    <div>
+      <div>
+        <img> <%= proyecto.imagen_personaje %> </img>
+      </div>
+      <div>
+        <h3>
+          <%= proyecto.nombre_personaje %> 
+        </h3>
+        <p>
+          <%= proyecto.rol_personaje %>
+        </p> 
+      </div>
+
+      <div>
+        <h3>
+          <%= proyecto.titulo_obra %>
+        </h3>
+        <p>
+          <%= proyecto.frase_estrella %>
+        </p>
+        <p>
+          <%= proyecto.sinopsis %>
+        </p>
+          <div>
+            <p>
+              <%= proyecto.genero %>
+            </p>
+              <a>
+                <%= proyecto.link_plataforma %>
+              </a>
+              <a>
+                <%= proyecto.link_resenas %>
+              </a>
+          </div>         
+      </div>
+    </div>
+  </section>
   
   <div class="card">
-    <h2><%= proyecto.titulo %></h2>
-    <p><%= proyecto.descripcion %></p>
+    <h2><%= proyect.titulo %></h2>
+    <p><%= proyect.descripcion %></p>
     <p><strong>Tema:</strong> <%= proyecto.tema %></p>
   </div>
 </body>
