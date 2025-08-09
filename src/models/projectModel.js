@@ -11,7 +11,7 @@ return rows;
 async function addMovie(projectData) {
   const {
     titulo_obra,
-    link_reseñas,
+    link_resenas,
     link_plataforma,
     genero,
     sinopsis,
@@ -21,19 +21,19 @@ async function addMovie(projectData) {
     frase_estrella,
     imagen_personaje
   } = projectData;
-
-  const sqlObra = 'INSERT INTO OBRAS (titulo_obra, link_reseñas, link_plataforma, genero, sinopsis, imagen_obra) VALUES (?, ?, ?, ?, ?, ?)';
+  console.log(projectData)
+  const sqlObra = 'INSERT INTO OBRAS (titulo_obra, link_resenas, link_plataforma, genero, sinopsis, imagen_obra) VALUES (?, ?, ?, ?, ?, ?)';
   const sqlPersonaje = 'INSERT INTO PERSONAJES (nombre_personaje, rol_personaje, frase_estrella, imagen_personaje, obra_id) VALUES (?, ?, ?, ?, ?)';
 
   const conn = await connection.getConnection();
 
   try {
     // Insertar obra y obtener id
-    const [result] = await conn.execute(sqlObra, [titulo_obra, link_reseñas, link_plataforma, genero, sinopsis, imagen_obra]);
+    const [result] = await conn.execute(sqlObra, [titulo_obra, link_resenas, link_plataforma, genero, sinopsis, imagen_obra]);
     const obraId = result.insertId;
 
-    // Insertar personaje con obraId
-    await conn.execute(sqlPersonaje, [nombre_personaje, rol_personaje, frase_estrella, imagen_personaje, obraId]);
+/*     // Insertar personaje con obraId
+    await conn.execute(sqlPersonaje, [nombre_personaje, rol_personaje, frase_estrella, imagen_personaje, obraId]); */
 
     return obraId;
   } catch (error) {

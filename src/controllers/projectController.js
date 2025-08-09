@@ -1,8 +1,7 @@
 const project = require("../models/projectModel");
-
+const baseUrl = process.env.BASE_URL || `http://localhost:${process.env.PORT || 4000}`;
 async function listProjects(req, res) {
   try {
-    const baseUrl = process.env.BASE_URL || `http://localhost:${process.env.PORT || 4000}`;
     const projectList = await project.getAll();
 
     const projectListWithFullUrl = projectList.map((p) => {
@@ -28,7 +27,7 @@ async function createMovie(req, res) {
 
     const insertId = await project.addMovie(projectData);
 
-    res.status(201).json({ message: 'Project added successfully', id: insertId });
+    res.status(201).json({ message: 'Project added successfully', id: insertId, success: true, cardURL: baseUrl+'/project/'+insertId});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to add project' });

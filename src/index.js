@@ -15,7 +15,7 @@ server.use(express.json());
 // Aquí sirves los archivos estáticos globalmente
 server.use(express.static('public'));
 
-//server.use(express.json({ limit: '50kb' }));
+server.use(express.json({ limit: '10mb' }));
 
 server.use('/project', projectRoutes); //girlflix instead of project
 
