@@ -1,3 +1,209 @@
-h3 {
-  color: red;
+/* ===== Fondo general ===== */
+body {
+  background-color: #2b0a3d; /* Violeta oscuro */
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Contenedor tarjeta ===== */
+.card {
+  display: flex;
+  justify-content: center;
+  
+}
+
+.card-content {
+  background-color: #1a1a1a; /* gris oscuro */
+  border-radius: 12px;
+  overflow: hidden;
+  width: 750px;
+  margin: 0 auto; /* extra seguridad para centrar */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  position: relative;
+  margin-bottom: 100px;
+}
+
+/* ===== Claqueta arriba ===== */
+.card-content::before {
+  content: "";
+  display: block;
+  height: 40px;
+  background: repeating-linear-gradient(
+    45deg,
+    black,
+    black 20px,
+    white 20px,
+    white 40px
+  );
+}
+
+/* ===== Distribución columnas ===== */
+.card-content {
+  display: flex;
+  flex-direction: column;
+}
+.card-body {
+  display: flex;
+  flex-direction: row; /* dos columnas aquí */
+}
+.left,
+.right {
+  padding: 20px;
+}
+
+/* Izquierda (imagen + personaje) */
+.left {
+  display: flex;
+  flex-direction: column;
+  text-align: center;  
+  gap: 20px;
+}
+
+.image-container img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #000;
+  margin-top: 25px;
+}
+
+.personaje-info h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.personaje-info p {
+  margin: 5px 0 0 0;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+/* Derecha (obra + sinopsis) */
+.titulo-obra {
+  color: #d4a4f7; /* lila */
+  font-size: 1.6rem;
+  margin: 20px 0 10px 0;
+}
+
+.frase {
+  font-style: italic;
+  color: #bbb;
+  margin: 5px 0 15px 0;
+}
+
+.sinopsis {
+  color: #ddd;
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.5em;
+}
+
+/* Info extra */
+.extra-info {
+  margin-bottom: 15px;
+}
+
+.extra-info .genero {
+  color: #aaa;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.extra-info a {
+  display: inline-block;
+  margin-right: 15px;
+  color: #9ecfff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.extra-info a:hover {
+  text-decoration: underline;
+}
+
+/* Estrellas */
+.rating {
+  font-size: 1.2rem;
+  color: gold;
+  margin-top: 10px;
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 768px) {
+  .left {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .right {
+    text-align: center;
+  }
+}
+/* Portada de la película */
+.portada-pelicula {
+  max-width: 800px;
+  margin:0 auto;
+  margin-block:50px;
+}
+
+.portada-pelicula img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 25px;
+
+}
+
+/* Ajuste de sección general */
+.detalle-proyecto {
+  margin: 0;
+  padding: 0;
+}
+
+/* Espacio y estilo del título */
+.titulo-seccion {
+  text-align: center;
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+/* Claqueta y datos debajo */
+.claqueta-info {
+  background-color: #fff;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Imagen del personaje */
+.imagen-personaje img {
+  max-width: 200px;
+  border: 3px solid #000;
+}
+
+/* Textos */
+.datos-personaje h3,
+.datos-obra h3 {
+  margin: 0;
+}
+
+.frase {
+  font-style: italic;
+  color: #555;
+}
+
+.enlaces a {
+  display: inline-block;
+  margin-right: 1rem;
+  color: #0077cc;
+  text-decoration: none;
+}
+
+.enlaces a:hover {
+  text-decoration: underline;
 }

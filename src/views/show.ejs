@@ -6,45 +6,63 @@
   <link rel="stylesheet" href="/styles/style.css" />
 </head>
 <body>
-  <h1>Datos del proyecto</h1>
-  <section>
-    <div>
-       <!-- Imagen de la peli -->
-        <% if (proyecto.imagen_obra) { %>
-          <img src="<%= proyecto.imagen_obra %>" alt="<%= proyecto.titulo_obra %>">
-        <% } %>
-    </div>
-    <div>
-      <div>
-        <!-- Imagen del personaje -->
-        <% if (proyecto.imagen_personaje) { %>
-          <img src="<%= proyecto.imagen_personaje %>" alt="<%= proyecto.nombre_personaje %>" style="max-width:200px;">
-        <% } %>
-      </div>
 
-      <div>
-        <h3><%= proyecto.nombre_personaje %></h3>
-        <p><%= proyecto.rol_personaje %></p> 
-      </div>
+ <h1 class="titulo-seccion">Datos del proyecto</h1>
 
-      <div>
-        <h3><%= proyecto.titulo_obra %></h3>
-        <p><%= proyecto.frase_estrella %></p>
-        <p><%= proyecto.sinopsis %></p>
-        <div>
-          <p><%= proyecto.genero %></p>
-          
-          <% if (proyecto.link_plataforma) { %>
-            <a href="<%= proyecto.link_plataforma %>" target="_blank">Ver en plataforma</a>
+  <section class="detalle-proyecto">
+    <!-- Portada de la película -->
+    <% if (proyecto.imagen_obra) { %>
+      <div class="portada-pelicula">
+        <img src="<%= proyecto.imagen_obra %>" alt="<%= proyecto.titulo_obra %>">
+      </div>
+    <% } %>
+      <div class="card-content">
+        <div class="card-body">
+        <!-- Columna izquierda: imagen personaje + datos -->
+        <div class="left">
+          <div class="image-container">
+            <% if (proyecto.imagen_personaje) { %>
+              <img src="<%= proyecto.imagen_personaje %>" alt="<%= proyecto.nombre_personaje %>">
+            <% } %>
+          </div>
+          <div class="personaje-info">
+            <h3><%= proyecto.nombre_personaje %></h3>
+            <p><%= proyecto.rol_personaje %></p> 
+          </div>
+        </div>
+
+        <!-- Columna derecha: info obra -->
+        <div class="right">
+          <% if (proyecto.titulo_obra) { %>
+            <h3 class="titulo-obra"><%= proyecto.titulo_obra %></h3>
           <% } %>
           
-          <% if (proyecto.link_resenas) { %>
-            <a href="<%= proyecto.link_resenas %>" target="_blank">Ver reseñas</a>
+          <% if (proyecto.frase_estrella) { %>
+            <p class="frase">«<%= proyecto.frase_estrella %>»</p>
           <% } %>
-        </div>         
+          
+          <% if (proyecto.sinopsis) { %>
+            <p class="sinopsis"><%= proyecto.sinopsis %></p>
+          <% } %>
+
+          <div class="extra-info">
+            <% if (proyecto.genero) { %>
+              <p class="genero"> <%= proyecto.genero %></p>
+            <% } %>
+            
+            <% if (proyecto.link_plataforma) { %>
+              <a href="<%= proyecto.link_plataforma %>" target="_blank">🎬</a>
+            <% } %>
+            
+            <% if (proyecto.link_resenas) { %>
+              <a href="<%= proyecto.link_resenas %>" target="_blank">⭐⭐⭐⭐⭐</a>
+            <% } %>
+          </div>
+        </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 </body>
 </html>
+
 
