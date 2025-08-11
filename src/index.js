@@ -37,6 +37,9 @@ server.listen(PORT, () => {
 });
 
 
+server.use(express.static("./web")); // Servir archivos estáticos de la carpeta web
+
+
 
 
 
