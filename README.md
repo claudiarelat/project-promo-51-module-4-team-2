@@ -49,10 +49,10 @@ Proyecto creado por **Push Sisters**
 
 ```plaintext
 src/
-├── controllers/        # Controladores de lógica de negocio
+├── controllers/                  # Controladores de lógica de negocio
 │   └── projectController.js
-├── db/                 # Conexión y scripts de base de datos
+├── db/                           # Conexión y scripts de base de datos
 │   ├── connection.js
 │   └── mysqldump.sql
-├── models/             # Modelos de datos
+├── models/                       # Modelos de datos
 │   └── project
