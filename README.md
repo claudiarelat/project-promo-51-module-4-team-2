@@ -1,17 +1,58 @@
-**Estructura del proyecto**
+# 🎬 GirlFlix  
+Proyecto creado por **Push Sisters**  
 
-📂 node_modules/          # Dependencias instaladas (se generan con npm install)
-📂 public/                # Archivos estáticos accesibles al navegador
-   📂 images/             # Las imágenes (portadas, personajes)
-📂 src/                   # Código fuente de la API
-   ├── index.js           # Configuración principal de Express
-   ├── routes/            # Rutas de la API
-   ├── controllers/       # Controladores
-   ├── models/            # Modelos 
-   └── db                 # Conexión a la base de datos
-📂 views/                 # Vistas (plantilla EJS)
-.env                      # Variables de entorno
-.gitignore                # Archivos y carpetas a ignorar en Git
-package-lock.json         # Generado por npm para versiones exactas
-package.json              # Configuración del proyecto y dependencias
-README.md                 # Documentación del proyecto
+**GirlFlix** es una aplicación web donde cada usuaria puede subir una "claqueta" (tarjeta personalizada) con su película o serie favorita, compartir sus gustos y descubrir recomendaciones de otras personas.  
+
+---
+
+## ✨ Funcionalidades principales  
+📽️ **Subida de claqueta personalizada** con:  
+  *  Título de la pieza audiovisual  
+  *  Frase estrella  
+  *  Enlace a una página de reseñas (IMDb, FilmAffinity, etc.)  
+  *  Plataforma donde puede verse (Netflix, Prime, etc.)  
+  *  Género  
+  *  Sinopsis  
+
+👤 **Personaje favorito**:  
+  *  Nombre del personaje  
+  *  Rol en la historia  
+  *  Imagen del personaje  
+
+🖼️ **Multimedia**:  
+  *  Portada de la película/serie  
+  *  Imagen del personaje favorito  
+  *  Imagen y claqueta por defecto si no se sube ninguna  
+
+🧹 Botón para borrar tu claqueta  
+🔁 Las claquetas se actualizan en tiempo real  
+💡 Explora recomendaciones de otras usuarias  
+🌐 Favicon personalizado  
+
+---
+
+## 🛠️ Tecnologías utilizadas  
+
+### **Frontend**  
+- ⚛️ React  
+- 🎨 SASS  
+- ⚡ Vite para bundling y desarrollo rápido  
+- 📂 Ubicado en la carpeta [`web/`](web/)  
+- 🌍 Deploy: [https://girlflix.onrender.com/#/proyectos](https://girlflix.onrender.com/#/proyectos)  
+
+### **Backend**  
+- 🟢 Node.js  
+- 🚀 Express  
+- 💾 MySQL para base de datos  
+- 🛠️ Arquitectura MVC (Model-View-Controller)  
+- 📂 Ubicado en la carpeta [`src/`](src/) con la siguiente estructura:  
+
+```plaintext
+src/
+├── controllers/        # Controladores de lógica de negocio
+│   └── projectController.js
+├── db/                 # Conexión y scripts de base de datos
+│   ├── connection.js
+│   └── mysqldump.sql
+├── models/             # Modelos de datos
+│   └── project
